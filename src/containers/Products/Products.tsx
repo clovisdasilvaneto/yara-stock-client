@@ -1,5 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
+import { useQuery } from "@apollo/client";
 import { DataGrid } from "@mui/x-data-grid";
+import { PRODUCTS_QUERY } from "../../services/products/queries";
+import useOffCanvas from "../../components/OffCanvas/useOffCanvas";
+import OffCanvas from "../../components/OffCanvas";
+import ProductsForm from "./components/ProductsForm";
 
 const columns = [
   { field: "id", headerName: "ID", width: 70, sortable: false },
@@ -18,35 +23,46 @@ const columns = [
   },
 ];
 
-const rows = [
-  { id: 1, name: "Snow", amount: 2, isHazardous: false },
-  { id: 2, name: "Lannister", amount: 2, isHazardous: false },
-  { id: 3, name: "Lannister", amount: 2, isHazardous: false },
-  { id: 4, name: "Stark", amount: 2, isHazardous: false },
-  { id: 5, name: "Targaryen", amount: 2, isHazardous: false },
-  { id: 6, name: "Melisandre", amount: 2, isHazardous: false },
-  { id: 7, name: "Clifford", amount: 2, isHazardous: false },
-  { id: 8, name: "Frances", amount: 2, isHazardous: false },
-  { id: 9, Name: "Roxie", amount: 13, isHazardous: false },
-];
-
 export default function Products() {
+  const { loading, error, data } = useQuery(PRODUCTS_QUERY);
+  const [isOpened, toggleIsOpened] = useOffCanvas();
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const products = data.products;
+
   return (
     <Box>
-      <Typography mb={3} variant="body2" fontStyle="italic">
-        Find all the products you have on your account.
-      </Typography>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        mb={3}
+        alignItems="center"
+      >
+        <Typography variant="body2" fontStyle="italic">
+          Find all the products you have on your account.
+        </Typography>
+
+        <Button onClick={toggleIsOpened} variant="outlined">
+          Add new product
+        </Button>
+      </Box>
 
       <DataGrid
-        rows={rows}
+        rows={products}
         columns={columns}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 8 },
           },
         }}
-        pageSizeOptions={[5, 10]}
+        pageSizeOptions={[5, 8]}
       />
+
+      <OffCanvas title="New Product" isOpen={isOpened} onClose={toggleIsOpened}>
+        <ProductsForm />
+      </OffCanvas>
     </Box>
   );
 }

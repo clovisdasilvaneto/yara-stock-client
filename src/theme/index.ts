@@ -1,13 +1,17 @@
 import { createTheme } from "@mui/material";
 
+export const PaperStyles = {
+  height: "100%",
+  borderRadius: 5,
+  padding: 5,
+};
+
 const theme = createTheme({
   components: {
-    MuiPaper: {
+    MuiButton: {
       defaultProps: {
         sx: {
-          height: "100%",
-          borderRadius: 5,
-          padding: 5,
+          borderRadius: 20,
         },
       },
     },

@@ -11,11 +11,16 @@ const router = createBrowserRouter([
         <Products />
       </Layout>
     ),
-    errorElement: (
-      <Layout title="Not found">
-        <NotFound />
+    errorElement: <NotFound />,
+  },
+  {
+    path: "/warehouses/",
+    element: (
+      <Layout title="Warehouses list">
+        <Products />
       </Layout>
     ),
+    errorElement: <NotFound />,
   },
 ]);
 

@@ -9,10 +9,20 @@ import {
 } from "@mui/material";
 import ProductionQuantityLimitsIcon from "@mui/icons-material/ProductionQuantityLimits";
 import WarehouseIcon from "@mui/icons-material/Warehouse";
+import { useNavigate } from "react-router-dom";
 
 function Sidebar() {
+  const navigate = useNavigate();
+
   return (
-    <Paper>
+    <Paper
+      sx={{
+        height: "100%",
+        borderRadius: 5,
+        padding: 2,
+        paddingY: 5,
+      }}
+    >
       <Typography
         align="center"
         marginBottom={6}
@@ -23,14 +33,14 @@ function Sidebar() {
         Yara Warehouses
       </Typography>
       <MenuList>
-        <MenuItem>
+        <MenuItem onClick={() => navigate("/")}>
           <ListItemIcon>
             <ProductionQuantityLimitsIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText>Products</ListItemText>
         </MenuItem>
         <Divider />
-        <MenuItem>
+        <MenuItem onClick={() => navigate("/warehouses/")}>
           <ListItemIcon>
             <WarehouseIcon fontSize="small" />
           </ListItemIcon>

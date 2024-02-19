@@ -2,6 +2,7 @@ import { Divider, Grid, Paper, Typography } from "@mui/material";
 
 import Sidebar from "../Sidebar/Sidebar";
 import { LayoutContainer, LayoutGrid } from "./styled";
+import { PaperStyles } from "../../theme";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -17,7 +18,7 @@ function Layout({ children, title }: LayoutProps) {
         </Grid>
 
         <Grid item xs={6} md={9}>
-          <Paper>
+          <Paper sx={PaperStyles}>
             <Typography paragraph variant="h5" fontWeight={500}>
               {title}
             </Typography>
