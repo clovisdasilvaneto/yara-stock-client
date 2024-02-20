@@ -39,6 +39,7 @@ const fixedColumns: GridColDef[] = [
 
 interface WarehouseListProps {
     items: Warehouse[]
+    loading: boolean
 }
 
 type warehouseAction = {
@@ -46,7 +47,7 @@ type warehouseAction = {
     warehouse: Warehouse,
 }
 
-function WarehouseList({ items }: WarehouseListProps) {
+function WarehouseList({ items, loading }: WarehouseListProps) {
     const [isMovementFormOpened, toggleMovementForm] = useOffCanvas()
     const [isWarehouseHistoryOpened, toggleWarehouseHistory] = useOffCanvas()
     const [movementAction, setMovementAction] = useState<warehouseAction>()
@@ -68,7 +69,8 @@ function WarehouseList({ items }: WarehouseListProps) {
     return (
         <>
             <DataGrid
-                rows={items}
+                rows={items || []}
+                loading={loading}
                 columns={[
                     ...fixedColumns,
                     {

@@ -17,6 +17,22 @@ export const LayoutContainer = styled(Box)`
   }
 `;
 
+export const LayoutDescription = styled(Box)`
+  display: grid;
+  grid-template-columns: auto 200px;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  @media only screen and (max-width: ${({ theme }) =>
+      theme.breakpoints.values.md}px) {
+    && {
+      grid-row-gap: 1rem;
+      grid-template-columns: auto;
+      margin-bottom: 2rem;
+    }
+  }
+`;
+
 export const LayoutGrid = styled(Grid)`
   height: 100%;
 `;

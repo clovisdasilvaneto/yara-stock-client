@@ -8,6 +8,7 @@ import { PRODUCTS_QUERY } from "../../services/products/queries";
 import useOffCanvas from "../../components/OffCanvas/useOffCanvas";
 import OffCanvas from "../../components/OffCanvas";
 import ProductsForm from "./components/ProductsForm";
+import { LayoutDescription } from "../../layout/Layout/styled";
 
 const columns = [
   { field: "id", headerName: "ID", width: 70, sortable: false },
@@ -29,30 +30,25 @@ export default function Products() {
   const { loading, error, data } = useQuery(PRODUCTS_QUERY);
   const [isOpened, toggleIsOpened] = useOffCanvas();
 
-  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  const products = data.products;
+  const products = data?.products;
 
   return (
     <Box>
-      <Box
-        display="flex"
-        justifyContent="space-between"
-        mb={3}
-        alignItems="center"
-      >
+      <LayoutDescription>
         <Typography variant="body2" fontStyle="italic">
           Find all the products you have on your account.
         </Typography>
 
-        <Button onClick={toggleIsOpened} variant="outlined">
+        <Button fullWidth onClick={toggleIsOpened} variant="outlined">
           Add new product
         </Button>
-      </Box>
+      </LayoutDescription>
 
       <DataGrid
-        rows={products}
+        rows={products || []}
+        loading={loading}
         columns={columns}
         initialState={{
           pagination: {
