@@ -1,6 +1,9 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useQuery } from "@apollo/client";
 import { DataGrid } from "@mui/x-data-grid";
+
+import { Product } from "./types";
+
 import { PRODUCTS_QUERY } from "../../services/products/queries";
 import useOffCanvas from "../../components/OffCanvas/useOffCanvas";
 import OffCanvas from "../../components/OffCanvas";
@@ -18,8 +21,7 @@ const columns = [
     field: "isHazardous",
     headerName: "Is Hazardous",
     width: 130,
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    valueGetter: (params: any) => `${params.row.isHazardous ? "yes" : "no"}`,
+    valueGetter: ({ row }: { row: Product }) => `${row.isHazardous ? "yes" : "no"}`,
   },
 ];
 
@@ -61,7 +63,7 @@ export default function Products() {
       />
 
       <OffCanvas title="New Product" isOpen={isOpened} onClose={toggleIsOpened}>
-        <ProductsForm />
+        <ProductsForm onClose={toggleIsOpened} />
       </OffCanvas>
     </Box>
   );

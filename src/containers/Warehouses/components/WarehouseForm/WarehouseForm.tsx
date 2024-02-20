@@ -2,25 +2,20 @@ import { useMutation } from "@apollo/client";
 import {
   Alert,
   AlertTitle,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
   Grid,
-  Radio,
-  RadioGroup,
   TextField,
 } from "@mui/material";
 import { FormEvent } from "react";
-import { CREATE_PRODUCT } from "../../../../services/products/mutations";
 import SubmitButton from "../../../../components/SubmitButton";
+import { CREATE_WAREHOUSE } from "../../../../services/warehouses/mutations";
 
-interface ProductsFormProps {
+interface WarehouseFormProps {
   onClose: () => void
 }
 
-function ProductsForm({ onClose }: ProductsFormProps) {
-  const [createProduct, { loading, error }] = useMutation(CREATE_PRODUCT, {
-    refetchQueries: ["GetProducts"],
+function WarehouseForm({ onClose }: WarehouseFormProps) {
+  const [createWarehouse, { loading, error }] = useMutation(CREATE_WAREHOUSE, {
+    refetchQueries: ["GetWarehouses"],
     onCompleted() {
       onClose()
     },
@@ -30,14 +25,13 @@ function ProductsForm({ onClose }: ProductsFormProps) {
     e.preventDefault();
 
     const form = e.currentTarget;
-    const { productName, amount, isHazardous } = form;
+    const { warehouseName, maxAmount } = form;
     const variables = {
-      name: productName.value,
-      amount: parseInt(amount.value),
-      isHazardous: isHazardous.value === "true",
+      name: warehouseName.value,
+      maxAmount: parseInt(maxAmount.value),
     };
 
-    await createProduct({
+    await createWarehouse({
       variables,
     });
 
@@ -51,16 +45,16 @@ function ProductsForm({ onClose }: ProductsFormProps) {
           <TextField
             label="Name"
             required
-            name="productName"
+            name="warehouseName"
             variant="outlined"
             fullWidth
           />
         </Grid>
 
-        <Grid item md={6}>
+        <Grid item md={12}>
           <TextField
-            label="Amount"
-            name="amount"
+            label="Max. Amount"
+            name="maxAmount"
             required
             type="number"
             fullWidth
@@ -68,19 +62,6 @@ function ProductsForm({ onClose }: ProductsFormProps) {
           />
         </Grid>
 
-        <Grid item md={6} xs={12}>
-          <FormControl>
-            <FormLabel id="hazardous">Is Hazardous?</FormLabel>
-            <RadioGroup
-              aria-labelledby="hazardous"
-              defaultValue={true}
-              name="isHazardous"
-            >
-              <FormControlLabel value={true} control={<Radio />} label="Yes" />
-              <FormControlLabel value={false} control={<Radio />} label="No" />
-            </RadioGroup>
-          </FormControl>
-        </Grid>
 
         <Grid item mt={2} xs={12}>
           {error && (
@@ -89,6 +70,7 @@ function ProductsForm({ onClose }: ProductsFormProps) {
               {error?.message}
             </Alert>
           )}
+
           <SubmitButton loading={loading} label="Submit" />
         </Grid>
       </Grid>
@@ -96,4 +78,4 @@ function ProductsForm({ onClose }: ProductsFormProps) {
   );
 }
 
-export default ProductsForm;
+export default WarehouseForm;

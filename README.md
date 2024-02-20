@@ -1,30 +1,10 @@
-# React + TypeScript + Vite
+# Yara Warehouses Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the frontend repo for the **Yara Warehouses Application**. You can find a detailed diagram about how it works and what is the database modeling behind it by [clicking here](https://excalidraw.com/#json=5Q7IYSqHkzG5wYdwFWFef,LOQuzSuH0RqudjMNmjLVEg) or looking to this image bellow: 
 
-Currently, two official plugins are available:
+![Yara Warehouse Diagram Image](diagram.png) 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Running the app
+In order to run the app, first run `npm install`.
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+After that, you can just run `npm run dev` on your terminal, and after the server is up, you can open the browser by accessing: `http://localhost:5173/`

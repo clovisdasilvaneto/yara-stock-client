@@ -15,6 +15,22 @@ const theme = createTheme({
         },
       },
     },
+    MuiPaper: {
+      defaultProps: {
+        sx: {
+          "&.MuiDrawer-paperAnchorLeft": {
+            ...PaperStyles,
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+          },
+          "&.MuiDrawer-paperAnchorRight": {
+            ...PaperStyles,
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+          },
+        },
+      },
+    },
   },
 });
 
