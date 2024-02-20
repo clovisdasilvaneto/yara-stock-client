@@ -4,6 +4,8 @@ This is the frontend repo for the **Yara Warehouses Application**. You can find 
 
 ![Yara Warehouse Diagram Image](diagram.png) 
 
+You can find the GraphQL API playground here: https://yara-stock-service.onrender.com/graphql
+
 ## Running the app
 In order to run the app, first run `npm install`.
 
