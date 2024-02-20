@@ -40,39 +40,37 @@ function WarehouseForm({ onClose }: WarehouseFormProps) {
 
   return (
     <form onSubmit={onSubmit}>
-      <Grid container spacing={2}>
-        <Grid item md={12}>
-          <TextField
-            label="Name"
-            required
-            name="warehouseName"
-            variant="outlined"
-            fullWidth
-          />
-        </Grid>
+      <Grid item sm={12} mb={2}>
+        <TextField
+          label="Name"
+          required
+          name="warehouseName"
+          variant="outlined"
+          fullWidth
+        />
+      </Grid>
 
-        <Grid item md={12}>
-          <TextField
-            label="Max. Amount"
-            name="maxAmount"
-            required
-            type="number"
-            fullWidth
-            variant="outlined"
-          />
-        </Grid>
+      <Grid item sm={12} mb={2}>
+        <TextField
+          label="Max. Amount"
+          name="maxAmount"
+          required
+          type="number"
+          fullWidth
+          variant="outlined"
+        />
+      </Grid>
 
 
-        <Grid item mt={2} xs={12}>
-          {error && (
-            <Alert sx={{ mb: 3 }} variant="filled" severity="error">
-              <AlertTitle>Oops!</AlertTitle>
-              {error?.message}
-            </Alert>
-          )}
+      <Grid item mt={2} xs={12} mb={2}>
+        {error && (
+          <Alert sx={{ mb: 3 }} variant="filled" severity="error">
+            <AlertTitle>Oops!</AlertTitle>
+            {error?.message}
+          </Alert>
+        )}
 
-          <SubmitButton loading={loading} label="Submit" />
-        </Grid>
+        <SubmitButton loading={loading} label="Submit" />
       </Grid>
     </form>
   );
