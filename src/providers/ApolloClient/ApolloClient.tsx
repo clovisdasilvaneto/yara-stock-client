@@ -1,7 +1,10 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 
+// TODO: move it to a .env file
+const API_ENDPOINT = "https://yara-stock-service.onrender.com/graphql"
+
 const client = new ApolloClient({
-  uri: "http://localhost:3000/graphql",
+  uri: API_ENDPOINT,
   cache: new InMemoryCache(),
 });
 
