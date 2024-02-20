@@ -1,10 +1,10 @@
 import NotFound from "./containers/NotFound";
 import Products from "./containers/Products";
-import { createBrowserRouter } from "react-router-dom";
+import { createHashRouter } from "react-router-dom";
 import Layout from "./layout/Layout";
 import Warehouses from "./containers/Warehouses";
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: (
