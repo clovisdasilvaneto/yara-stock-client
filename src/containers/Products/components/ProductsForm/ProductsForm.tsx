@@ -46,51 +46,49 @@ function ProductsForm({ onClose }: ProductsFormProps) {
 
   return (
     <form onSubmit={onSubmit}>
-      <Grid container spacing={2}>
-        <Grid item md={12}>
-          <TextField
-            label="Name"
-            required
-            name="productName"
-            variant="outlined"
-            fullWidth
-          />
-        </Grid>
+      <Grid item md={12} mb={2}>
+        <TextField
+          label="Name"
+          required
+          name="productName"
+          variant="outlined"
+          fullWidth
+        />
+      </Grid>
 
-        <Grid item md={6}>
-          <TextField
-            label="Amount"
-            name="amount"
-            required
-            type="number"
-            fullWidth
-            variant="outlined"
-          />
-        </Grid>
+      <Grid item md={6} mb={2}>
+        <TextField
+          label="Amount"
+          name="amount"
+          required
+          type="number"
+          fullWidth
+          variant="outlined"
+        />
+      </Grid>
 
-        <Grid item md={6} xs={12}>
-          <FormControl>
-            <FormLabel id="hazardous">Is Hazardous?</FormLabel>
-            <RadioGroup
-              aria-labelledby="hazardous"
-              defaultValue={true}
-              name="isHazardous"
-            >
-              <FormControlLabel value={true} control={<Radio />} label="Yes" />
-              <FormControlLabel value={false} control={<Radio />} label="No" />
-            </RadioGroup>
-          </FormControl>
-        </Grid>
+      <Grid item md={6} xs={12} mb={2}>
+        <FormControl>
+          <FormLabel id="hazardous">Is Hazardous?</FormLabel>
+          <RadioGroup
+            aria-labelledby="hazardous"
+            defaultValue={true}
+            name="isHazardous"
+          >
+            <FormControlLabel value={true} control={<Radio />} label="Yes" />
+            <FormControlLabel value={false} control={<Radio />} label="No" />
+          </RadioGroup>
+        </FormControl>
+      </Grid>
 
-        <Grid item mt={2} xs={12}>
-          {error && (
-            <Alert sx={{ mb: 3 }} variant="filled" severity="error">
-              <AlertTitle>Oops!</AlertTitle>
-              {error?.message}
-            </Alert>
-          )}
-          <SubmitButton loading={loading} label="Submit" />
-        </Grid>
+      <Grid item mt={2} xs={12} mb={2}>
+        {error && (
+          <Alert sx={{ mb: 3 }} variant="filled" severity="error">
+            <AlertTitle>Oops!</AlertTitle>
+            {error?.message}
+          </Alert>
+        )}
+        <SubmitButton loading={loading} label="Submit" />
       </Grid>
     </form>
   );
